@@ -83,34 +83,34 @@ function task2($arr) {
 }
 
 function task3($n) {
-    if ($n >= 50) {
-        $arr = array();
-        for ($i = 1; $i <= $n; $i++) {
-            array_push($arr, rand(1, 100));
-        }
-        if ($fp = fopen('numbers.csv', 'w')) {
-            fputcsv($fp, $arr, ';');
-            fclose($fp);
-            $sum = 0;
-            if ($fp = fopen('numbers.csv', 'r')) {
-                while ($csvData = fgetcsv($fp, 100, ';')) {
-                    foreach ($csvData as $num) {
-                        $num = number_format($num);
-                        if ($num % 2 == 0) {
-                            $sum += $num;
-                        }
-                    }
-                }
-                return $sum;
-            } else {
-                return 'Невозможно считать csv-файл!';
-            }
-        } else {
-            return 'Невозможно записать в csv-файл!';
-        }
-    } else {
+    if ($n < 50) {
         return 'Введите число не менее 50!!!';
     }
+    $arr = array();
+    for ($i = 1; $i <= $n; $i++) {
+        array_push($arr, rand(1, 100));
+    }
+    $fp = fopen('numbers.csv', 'w');
+    if (!$fp) {
+        return 'Невозможно записать в csv-файл!';
+    }
+    fputcsv($fp, $arr, ';');
+    fclose($fp);
+
+    $fp = fopen('numbers.csv', 'r');
+    if (!$fp) {
+        return 'Невозможно считать csv-файл!';
+    }
+    $sum = 0;
+    while ($csvData = fgetcsv($fp, 100, ';')) {
+        foreach ($csvData as $num) {
+            $num = $num + 0;
+            if ($num % 2 == 0) {
+                $sum += $num;
+            }
+        }
+    }
+    return $sum;
 }
 
 function task4($url) {
