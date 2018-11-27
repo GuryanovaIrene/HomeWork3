@@ -1,7 +1,7 @@
 <pre>
 <?php
 require "src/functions.php";
-//task1('data.xml');
+task1('data.xml');
 
 $arr = array(
     'Keyboard' => array(
@@ -56,4 +56,11 @@ task2($arr);
 
 echo task3(60) . PHP_EOL;
 
-echo task4('https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json');
+task4('https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json');
+
+echo PHP_EOL;
+
+$dates = ['27.05.2018', '24.06.1980', '22.12.2000', '20.08.1978'];
+foreach ($dates as $dt) {
+    echo 'Знак зодиака для даты рождения ' . $dt . ': ' . zodiac($dt) . PHP_EOL;
+}
