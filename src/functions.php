@@ -138,14 +138,6 @@ function task4($url) {
 
     searchByKey($json, 'title');
     searchByKey($json, 'pageid');
-    /*
-    $title = strstr($result, '"title":');
-    $title = substr($title,1, strpos($title, ',') - 2);
-    $title = str_replace('":"', '=', $title);
-    $pageId = strstr($result, '"pageid":');
-    $pageId = substr($pageId,1, strpos($pageId, ',') - 2);
-    $pageId = str_replace('":', '=', $pageId);
-    echo 'title = ' . $title . PHP_EOL . 'pageId = ' . $pageId;*/
 }
 
 function zodiac($dt) {
