@@ -90,27 +90,32 @@ function task2($arr) {
 }
 
 function task3($n) {
-    $arr = array();
+    $arr = [];
+
     for ($i = 1; $i <= $n; $i++) {
-        array_push($arr, rand(1, 100));
+        $arr[] = rand(1, 100);
     }
+
     $fp = fopen('numbers.csv', 'w');
     if (!$fp) {
         return 'Невозможно записать в csv-файл!';
     }
+
     fputcsv($fp, $arr, ';');
     fclose($fp);
+
     $fp = fopen('numbers.csv', 'r');
     if (!$fp) {
         return 'Невозможно считать csv-файл!';
     }
-    $sum = 0;
 
-    foreach (fgetcsv($fp, 100, ';') as $num) {
+    $sum = 0;
+    foreach (fgetcsv($fp, 1000, ';') as $num) {
         if ($num % 2 == 0) {
             $sum += $num;
         }
     }
+    fclose($fp);
     return $sum;
 }
 
